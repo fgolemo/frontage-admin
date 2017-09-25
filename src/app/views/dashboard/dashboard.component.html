@@ -41,10 +41,22 @@
   <div class="col-sm-6 col-lg-3">
     <div class="card">
       <div class="card-block">
-        <div class="h4 m-0">89.9%</div>
-        <div>Lorem ipsum...</div>
-        <div class="progress progress-xs my-1">
+        <div class="h4 m-0 pull-left">4h30m</div>
+        <label class="switch switch-lg switch-text switch-primary pull-right">
+          <input type="checkbox" class="switch-input" [(ngModel)]="backend.facadeRunning" (submit)="backend.switchFacade()" >
+          <span class="switch-label" data-on="On" data-off="Off"></span>
+          <span class="switch-handle"></span>
+        </label>
+        <div class="clearfix"></div>
+        <div>Until facade turns
+          <span *ngIf="backend.facadeRunning">OFF</span>
+          <span *ngIf="!backend.facadeRunning">ON</span>
+        </div>
+        <div class="progress progress-xs my-1" *ngIf="backend.facadeRunning">
           <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <div class="progress progress-xs my-1" *ngIf="!backend.facadeRunning">
+          <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
         <small class="text-muted">Lorem ipsum dolor sit amet enim.</small>
       </div>
