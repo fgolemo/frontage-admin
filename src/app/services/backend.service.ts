@@ -4,13 +4,18 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 import {environment} from '../../environments/environment';
 
+// TODO: encapsulate response object properly
+// export class FResponse {
+//   error: number;
+//   data: object;
+// }
 
 @Injectable()
 export class BackendService {
   logged_in = false;
   loginErr = false;
   token = '';
-  errorMsg = '';
+  errorMsg = '--';
   error = false;
   facadeRunning = false;
   status = {
@@ -21,16 +26,21 @@ export class BackendService {
   };
 
   constructor(private http: Http) {
-    // TODO: get facade state, then set the knownstatevar and finally change template to show loading bar until this state is done
   };
 
   private getOnOff(): Promise<any> {
-    // TODO: implement
-    return Promise.resolve({});
+    const query = this.addTokenGet(environment.backend + 'admin/is_on');
+    const statusOp = this.http.get(query).toPromise();
+    return statusOp.then(data => this.getOnOffResponse(data), err => this.handleError(err));
   }
 
-  private getOnOffResponse(): Promise<any> {
-    // TODO: implement
+  private getOnOffResponse(res: Response): Promise<any> {
+    const data = this.extractData(res);
+    if (!this.hasError(data)) {
+      this.status.know_on = true;
+      this.facadeRunning = data.on;
+      console.log('received facade state');
+    }
     return Promise.resolve({});
   }
 
@@ -39,8 +49,8 @@ export class BackendService {
     return Promise.resolve({});
   }
 
-  private getCalResponse(): Promise<any> {
-    // TODO: implement
+  private getCalResponse(res: Response): Promise<any> {
+    const data = this.extractData(res);
     return Promise.resolve({});
   }
 
@@ -49,8 +59,8 @@ export class BackendService {
     return Promise.resolve({});
   }
 
-  private getAppRespone(): Promise<any> {
-    // TODO: implement
+  private getAppRespone(res: Response): Promise<any> {
+    const data = this.extractData(res);
     return Promise.resolve({});
   }
 
@@ -65,13 +75,17 @@ export class BackendService {
   }
 
   private loginResponse(res: Response): Promise<any> {
-    const body = res['_body'] || '';
-    const data = JSON.parse(body);
+    const data = this.extractData(res);
     if (data.error === 0 && data.token) {
       this.logged_in = true;
       this.loginErr = false;
       this.token = data.token;
       console.log('logged in');
+
+      // getting facade state
+      this.getOnOff();
+      this.getCal();
+      this.getCal();
     } else {
       // TODO: write service that looks up error codes and echoes the right error message
       this.loginErr = true;
@@ -79,7 +93,7 @@ export class BackendService {
     return Promise.resolve({});
   }
 
-  private addToken(payload: object): object {
+  private addTokenPost(payload: object): object {
     if (this.token !== '') {
       payload['token'] = this.token;
     } else {
@@ -88,42 +102,50 @@ export class BackendService {
     return payload;
   }
 
+  private addTokenGet(query: string): string {
+    // TODO: test if there is already a '?' in the query, if yes, change ? to &
+    query += '?token=' + this.token;
+    return query
+  }
+
+  private hasError(data: object): boolean {
+    if (data['error'] === 0) {
+      this.error = false;
+      this.status.changing = false;
+      this.errorMsg = '';
+      return false;
+    } else {
+      // TODO: write service that looks up error codes and echoes the right error message to this.errorMsg
+      this.error = true;
+      this.errorMsg = 'TODO: add correct err msg here. Code: ' + data['error'];
+      return true;
+    }
+  }
+
   public switchFacade(onoff: boolean): Promise<any> {
     this.status.changing = true;
     const payload = {
       on: onoff
     };
 
-    const switchOp = this.http.post(environment.backend + 'admin/is_on', this.addToken(payload)).toPromise();
+    const switchOp = this.http.post(environment.backend + 'admin/is_on', this.addTokenPost(payload)).toPromise();
     return switchOp.then(data => this.switchFacadeResponse(data), err => this.handleError(err));
   }
 
-  public switchFacadeResponse(res: Response): Promise<any> {
+  private extractData(res: Response) {
     const body = res['_body'] || '';
     const data = JSON.parse(body);
-    if (data.error === 0) {
-      this.error = false;
-      this.status.changing = false;
-      this.facadeRunning = data.on;
-      console.log('changed facade state');
-    } else {
-      // TODO: write service that looks up error codes and echoes the right error message to this.errorMsg
-      this.error = true;
-    }
-
-    return Promise.resolve({});
+    return data;
   }
 
-  // public isOn(): Promise<any> {
-  //   this.http.get(environment.backend + '');
-  //   return null;
-  //   // if (this.bars.length == 0) {
-  //   //   const obs = this.http.get(BARS).toPromise();
-  //   //   return obs.then(data => this.extractBars(data), err => this.handleError(err));
-  //   // } else {
-  //   //   return(Promise.resolve(this.bars));
-  //   // }
-  // }
+  public switchFacadeResponse(res: Response): Promise<any> {
+    const data = this.extractData(res);
+    if (!this.hasError(data)) {
+      this.facadeRunning = data.on;
+      console.log('changed facade state');
+    }
+    return Promise.resolve({});
+  }
 
   private handleError(error: Response | any) {
     let errMsg: string;
@@ -138,22 +160,5 @@ export class BackendService {
     return Observable.throw(errMsg);
   }
 
-
-  // getNearbyBarsCSV(lat: number, long: number, dist: number, search: string): Promise<any> {
-  //   // console.log("dist: "+dist);
-  //   return new Promise((resolve, reject) => {
-  //
-  //     const nearbyBars = this.bars.filter((bar) => {
-  //       return this.distance(bar, lat, long) <= dist;
-  //     });
-  //
-  //     // console.dir(nearbyBars);
-  //
-  //     resolve({
-  //       data: nearbyBars,
-  //       paging: {}
-  //     })
-  //   });
-  // }
 }
 
