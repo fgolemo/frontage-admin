@@ -32,6 +32,9 @@
         <!--Check me out-->
       <!--</label>-->
     <!--</div>-->
+    <div class="alert alert-danger" role="alert" *ngIf="backend.loginErr">
+      Your login is invalid. Please try again.
+    </div>
     <button type="button" (click)="login()" class="btn btn-primary">LOGIN</button>
   </form>
 </div>

@@ -8,6 +8,7 @@ import {environment} from '../../environments/environment';
 @Injectable()
 export class BackendService {
   logged_in = false;
+  loginErr = false;
   token = '';
   facadeRunning = false;
   knowFacadeState = 0;
@@ -31,8 +32,12 @@ export class BackendService {
     const data = JSON.parse(body);
     if (data.error === 0 && data.token) {
       this.logged_in = true;
+      this.loginErr = false;
       this.token = data.token;
       console.log('logged in');
+    } else {
+      // TODO: write service that looks up error codes and echoes the right error message
+      this.loginErr = true;
     }
     return Promise.resolve({});
   }
