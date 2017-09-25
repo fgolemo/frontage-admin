@@ -18,17 +18,23 @@ export class BackendService {
   errorMsg = '--';
   error = false;
   facadeRunning = false;
-  status = {
+  status = { // TODO: make internal class
     changing: false,
     know_on: false,
     know_app: false,
     know_cal: false
   };
-  cal = {
+  cal = { // TODO: make external class
     on: '',
     off: '',
     default: '',
     params: {}
+  };
+  app = { // TODO: make external class
+    name: '',
+    params: {},
+    start: '',
+    user: ''
   };
 
   constructor(private http: Http) {
@@ -70,12 +76,28 @@ export class BackendService {
   }
 
   private getApp(): Promise<any> {
-    // TODO: implement
-    return Promise.resolve({});
+    const query = this.addTokenGet(environment.backend + 'admin/apps/running');
+    const statusOp = this.http.get(query).toPromise();
+    return statusOp.then(data => this.getAppRespone(data), err => this.handleError(err));
   }
 
   private getAppRespone(res: Response): Promise<any> {
     const data = this.extractData(res);
+    if (!this.hasError(data)) {
+      this.status.know_app = true;
+      this.app.name = data.data.name;
+      console.log(this.app.name !== '');
+      console.log(this.app.name);
+      this.app.start = data.data.start;
+      this.app.user = data.data.user;
+      this.app.params = data.data.params;
+      console.log('received facade app');
+    }
+    return Promise.resolve({});
+  }
+
+  public killApp(): Promise<any> {
+    // TODO: implement
     return Promise.resolve({});
   }
 
@@ -100,7 +122,7 @@ export class BackendService {
       // getting facade state
       this.getOnOff();
       this.getCal();
-      this.getCal();
+      this.getApp();
     } else {
       // TODO: write service that looks up error codes and echoes the right error message
       this.loginErr = true;
@@ -157,6 +179,7 @@ export class BackendService {
     const data = this.extractData(res);
     if (!this.hasError(data)) {
       this.facadeRunning = data.on;
+      this.getApp();
       console.log('changed facade state');
     }
     return Promise.resolve({});

@@ -15,4 +15,9 @@ export class DashboardComponent {
   login(): void {
     this.backend.login(this.username, this.password);
   }
+
+  launchApp(): void {
+    // TODO: show modal and ask which app
+    console.log('TODO: ask which app to launch');
+  }
 }
