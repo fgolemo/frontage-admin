@@ -18,11 +18,11 @@ export class BackendService {
 
   public login(user: string, pass: string): Promise<any> {
     // TODO: construct proper JWT payload here
-    const payload = new URLSearchParams();
-    payload.append('username', user);
-    payload.append('password', pass);
-    // TODO: there is something wrong here - this doesn't get sent properly, fix protocol/form-tokenization
-    const loginOp = this.http.post(environment.backend + 'login', payload.toString()).toPromise();
+    const payload = {
+      username: user,
+      password: pass
+    };
+    const loginOp = this.http.post(environment.backend + 'login', payload).toPromise();
     return loginOp.then(data => this.loginResponse(data), err => this.handleError(err));
   }
 
@@ -37,13 +37,10 @@ export class BackendService {
     return Promise.resolve({});
   }
 
-  public switchFacade(): boolean {
-    console.log(this.facadeRunning ? 'was running' : 'was stopped');
-    console.log('switching facade on/off');
+  public switchFacade(): void {
     // TODO: add actual call here
-    this.facadeRunning = !this.facadeRunning;
-    console.log(this.facadeRunning ? 'is running now' : 'is stopped now');
-    return true;
+
+    // return true;
   }
 
   // public isOn(): Promise<any> {
