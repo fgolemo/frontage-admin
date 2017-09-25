@@ -13,14 +13,46 @@ export class BackendService {
   errorMsg = '';
   error = false;
   facadeRunning = false;
-  knowFacadeState = 0;
   status = {
-    changing: false
+    changing: false,
+    know_on: false,
+    know_app: false,
+    know_cal: false
   };
 
   constructor(private http: Http) {
     // TODO: get facade state, then set the knownstatevar and finally change template to show loading bar until this state is done
   };
+
+  private getOnOff(): Promise<any> {
+    // TODO: implement
+    return Promise.resolve({});
+  }
+
+  private getOnOffResponse(): Promise<any> {
+    // TODO: implement
+    return Promise.resolve({});
+  }
+
+  private getCal(): Promise<any> {
+    // TODO: implement
+    return Promise.resolve({});
+  }
+
+  private getCalResponse(): Promise<any> {
+    // TODO: implement
+    return Promise.resolve({});
+  }
+
+  private getApp(): Promise<any> {
+    // TODO: implement
+    return Promise.resolve({});
+  }
+
+  private getAppRespone(): Promise<any> {
+    // TODO: implement
+    return Promise.resolve({});
+  }
 
   public login(user: string, pass: string): Promise<any> {
     // TODO: construct proper JWT payload here
@@ -62,8 +94,6 @@ export class BackendService {
       on: onoff
     };
 
-    // TODO: add token-adding payload wrapper function
-
     const switchOp = this.http.post(environment.backend + 'admin/is_on', this.addToken(payload)).toPromise();
     return switchOp.then(data => this.switchFacadeResponse(data), err => this.handleError(err));
   }
@@ -74,7 +104,6 @@ export class BackendService {
     if (data.error === 0) {
       this.error = false;
       this.status.changing = false;
-      console.log(data.on);
       this.facadeRunning = data.on;
       console.log('changed facade state');
     } else {

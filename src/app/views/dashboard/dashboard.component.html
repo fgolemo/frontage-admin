@@ -49,7 +49,15 @@
 </div>
 <div class="row" *ngIf="backend.logged_in">
   <div class="col-sm-6 col-lg-3">
-    <div class="card">
+    <!--loading facade status-->
+    <div class="card" *ngIf="!backend.status.know_on">
+      <div class="card-block">
+        <div class="h4 m-0">Please stand by <i class="fa fa-spinner fa-3x fa-pulse fa-fw"></i></div>
+        <small class="text-muted">Loading facade status</small>
+      </div>
+    </div>
+    <!--content-->
+    <div class="card" *ngIf="backend.status.know_on">
       <div class="card-block">
         <div class="h4 m-0 pull-left">4h30m</div>
         <div class="pull-right">
