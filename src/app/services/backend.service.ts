@@ -24,6 +24,12 @@ export class BackendService {
     know_app: false,
     know_cal: false
   };
+  cal = {
+    on: '',
+    off: '',
+    default: '',
+    params: {}
+  };
 
   constructor(private http: Http) {
   };
@@ -45,12 +51,21 @@ export class BackendService {
   }
 
   private getCal(): Promise<any> {
-    // TODO: implement
-    return Promise.resolve({});
+    const query = this.addTokenGet(environment.backend + 'admin/cal');
+    const statusOp = this.http.get(query).toPromise();
+    return statusOp.then(data => this.getCalResponse(data), err => this.handleError(err));
   }
 
   private getCalResponse(res: Response): Promise<any> {
     const data = this.extractData(res);
+    if (!this.hasError(data)) {
+      this.status.know_cal = true;
+      this.cal.on = data.on;
+      this.cal.off = data.off;
+      this.cal.default = data.default;
+      this.cal.params = data.params;
+      console.log('received facade cal');
+    }
     return Promise.resolve({});
   }
 

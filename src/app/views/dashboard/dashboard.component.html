@@ -115,9 +115,9 @@
     <!--content-->
     <div class="card" *ngIf="backend.status.know_cal">
       <div class="card-block">
-        <div class="h4 m-0">21:00-23:59</div>
+        <div class="h4 m-0">{{backend.cal.on}}-{{backend.cal.off}}</div>
         <div>Today's facade time</div>
-        <small class="text-muted">Default app: Flags</small>
+        <small class="text-muted">Default app: {{backend.cal.default}}</small>
       </div>
     </div>
   </div><!--/.col-->
