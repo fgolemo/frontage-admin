@@ -52,7 +52,7 @@
     <!--loading facade status-->
     <div class="card" *ngIf="!backend.status.know_on">
       <div class="card-block">
-        <div class="h4 m-0">Please stand by <i class="fa fa-spinner fa-3x fa-pulse fa-fw"></i></div>
+        <div class="h4 m-0">Please stand by <i class="fa fa-spinner fa-pulse fa-fw"></i></div>
         <small class="text-muted">Loading facade status</small>
       </div>
     </div>
@@ -105,19 +105,32 @@
     </div>
   </div><!--/.col-->
   <div class="col-sm-6 col-lg-3">
-    <div class="card">
+    <!--loading facade status-->
+    <div class="card" *ngIf="!backend.status.know_cal">
       <div class="card-block">
-        <div class="h4 m-0">12.124</div>
-        <div>Lorem ipsum...</div>
-        <div class="progress progress-xs my-1">
-          <div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
-        <small class="text-muted">Lorem ipsum dolor sit amet enim.</small>
+        <div class="h4 m-0">Please stand by <i class="fa fa-spinner fa-pulse fa-fw"></i></div>
+        <small class="text-muted">Loading facade calendar</small>
+      </div>
+    </div>
+    <!--content-->
+    <div class="card" *ngIf="backend.status.know_cal">
+      <div class="card-block">
+        <div class="h4 m-0">21:00-23:59</div>
+        <div>Today's facade time</div>
+        <small class="text-muted">Default app: Flags</small>
       </div>
     </div>
   </div><!--/.col-->
   <div class="col-sm-6 col-lg-3">
-    <div class="card">
+    <!--loading facade status-->
+    <div class="card" *ngIf="!backend.status.know_app">
+      <div class="card-block">
+        <div class="h4 m-0">Please stand by <i class="fa fa-spinner fa-pulse fa-fw"></i></div>
+        <small class="text-muted">Loading facade app</small>
+      </div>
+    </div>
+    <!--content-->
+    <div class="card" *ngIf="backend.status.know_app">
       <div class="card-block">
         <div class="h4 m-0">$98.111,00</div>
         <div>Lorem ipsum...</div>
