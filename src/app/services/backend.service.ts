@@ -97,8 +97,14 @@ export class BackendService {
   }
 
   public killApp(): Promise<any> {
-    // TODO: implement
-    return Promise.resolve({});
+
+    // // this should have worked, but on my mock server it isn't
+    // const payload = this.addTokenPost({abc: 123});
+    // const killOp = this.http.delete(environment.backend + 'admin/apps/running', payload).toPromise();
+
+    const query = this.addTokenGet(environment.backend + 'admin/apps/running');
+    const killOp = this.http.delete(query).toPromise();
+    return killOp.then(data => this.getAppRespone(data), err => this.handleError(err));
   }
 
   public login(user: string, pass: string): Promise<any> {
