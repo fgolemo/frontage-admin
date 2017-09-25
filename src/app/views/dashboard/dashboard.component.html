@@ -39,17 +39,48 @@
   </form>
 </div>
 
-
+<div class="row">
+  <div class="col-sm-12">
+    <div class="alert alert-danger" role="alert" *ngIf="backend.error">
+      <strong>Sorry there was an error with your request:</strong><br>
+      {{backend.errorMsg}}
+    </div>
+  </div>
+</div>
 <div class="row" *ngIf="backend.logged_in">
   <div class="col-sm-6 col-lg-3">
     <div class="card">
       <div class="card-block">
         <div class="h4 m-0 pull-left">4h30m</div>
-        <label class="switch switch-lg switch-text switch-primary pull-right">
-          <input type="checkbox" class="switch-input" [(ngModel)]="backend.facadeRunning" (submit)="backend.switchFacade()" >
-          <span class="switch-label" data-on="On" data-off="Off"></span>
-          <span class="switch-handle"></span>
-        </label>
+        <div class="pull-right">
+          <button
+            type="button"
+            class="btn btn-success"
+            *ngIf="!backend.facadeRunning"
+            (click)="backend.switchFacade(true)"
+            [disabled]="backend.status.changing"
+          >
+            <i class="fa fa-spinner fa-pulse fa-fw" *ngIf="backend.status.changing"></i>
+            TURN ON
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-danger"
+            *ngIf="backend.facadeRunning"
+            (click)="backend.switchFacade(false)"
+            [disabled]="backend.status.changing"
+          >
+            <i class="fa fa-spinner fa-pulse fa-fw" *ngIf="backend.status.changing"></i>
+            TURN OFF
+          </button>
+        </div>
+
+        <!--<label class="switch switch-lg switch-text switch-primary pull-right">-->
+          <!--<input type="checkbox" class="switch-input" [(ngModel)]="backend.facadeRunning" >-->
+          <!--<span class="switch-label" data-on="On" data-off="Off"></span>-->
+          <!--<span class="switch-handle"></span>-->
+        <!--</label>-->
         <div class="clearfix"></div>
         <div>Until facade turns
           <span *ngIf="backend.facadeRunning">OFF</span>
@@ -61,7 +92,7 @@
         <div class="progress progress-xs my-1" *ngIf="!backend.facadeRunning">
           <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
-        <small class="text-muted">Lorem ipsum dolor sit amet enim.</small>
+        <!--<small class="text-muted">Lorem ipsum dolor sit amet enim.</small>-->
       </div>
     </div>
   </div><!--/.col-->

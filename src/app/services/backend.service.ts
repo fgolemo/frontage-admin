@@ -10,8 +10,13 @@ export class BackendService {
   logged_in = false;
   loginErr = false;
   token = '';
+  errorMsg = '';
+  error = false;
   facadeRunning = false;
   knowFacadeState = 0;
+  status = {
+    changing: false
+  };
 
   constructor(private http: Http) {
     // TODO: get facade state, then set the knownstatevar and finally change template to show loading bar until this state is done
@@ -42,10 +47,42 @@ export class BackendService {
     return Promise.resolve({});
   }
 
-  public switchFacade(): void {
-    // TODO: add actual call here
+  private addToken(payload: object): object {
+    if (this.token !== '') {
+      payload['token'] = this.token;
+    } else {
+      console.error('trying to add token without token');
+    }
+    return payload;
+  }
 
-    // return true;
+  public switchFacade(onoff: boolean): Promise<any> {
+    this.status.changing = true;
+    const payload = {
+      on: onoff
+    };
+
+    // TODO: add token-adding payload wrapper function
+
+    const switchOp = this.http.post(environment.backend + 'admin/is_on', this.addToken(payload)).toPromise();
+    return switchOp.then(data => this.switchFacadeResponse(data), err => this.handleError(err));
+  }
+
+  public switchFacadeResponse(res: Response): Promise<any> {
+    const body = res['_body'] || '';
+    const data = JSON.parse(body);
+    if (data.error === 0) {
+      this.error = false;
+      this.status.changing = false;
+      console.log(data.on);
+      this.facadeRunning = data.on;
+      console.log('changed facade state');
+    } else {
+      // TODO: write service that looks up error codes and echoes the right error message to this.errorMsg
+      this.error = true;
+    }
+
+    return Promise.resolve({});
   }
 
   // public isOn(): Promise<any> {
