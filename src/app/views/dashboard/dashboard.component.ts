@@ -9,7 +9,7 @@ export class DashboardComponent {
   username = '';
   password = '';
 
-  constructor(private backend: BackendService) {
+  constructor(public backend: BackendService) {
   }
 
   login(): void {

@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="08c74dc9762957593b91f6eb5d65efdfc975bf48" datatype="html">
+        <source>Username</source>
+        <target>Nom d'utilisateur</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/dashboard/dashboard.component.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3d5491e003a73ea0869a15525d006058b64dc3e0" datatype="html">
+        <source>
+        This is a username that we assigned to you, not your email address.
+      </source>
+        <target>
+        This is a username that we assigned to you, not your email address.
+      </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/dashboard/dashboard.component.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c32ef07f8803a223a83ed17024b38e8d82292407" datatype="html">
+        <source>Password</source>
+        <target>Le password</target>
+        <context-group purpose="location">
+          <context context-type="targetfile">app/views/dashboard/dashboard.component.ts</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e0bd6ee43bdf7f974c560f41bfdab79d114188ff" datatype="html">
+        <source>
+          Your login is invalid. Please try again.
+        </source>
+        <target>
+          Votre login is invalid. Please try again.
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/dashboard/dashboard.component.ts</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9e58dfa6c0a452d8333674cd6aa497d392b1c633" datatype="html">
+        <source>LOGIN</source>
+        <target>le LOGIN avec baguette</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/dashboard/dashboard.component.ts</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3d5bef00d941508ae0b9ae8aa9f09e12c6627519" datatype="html">
+        <source>Sorry there was an error with your request:</source>
+        <target>Sorry there was an error with your request:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/dashboard/dashboard.component.ts</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1de7a758fe0bbcc9d4b311c5f80d68baad1ef956" datatype="html">
+        <source>Please stand by <x id="START_ITALIC_TEXT" ctype="x-i"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i"/></source>
+        <target>Please stand by <x id="START_ITALIC_TEXT" ctype="x-i"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/dashboard/dashboard.component.ts</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/dashboard/dashboard.component.ts</context>
+          <context context-type="linenumber">113</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/dashboard/dashboard.component.ts</context>
+          <context context-type="linenumber">130</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4b51b50dca732851aef125a87e62ed7542db0de7" datatype="html">
+        <source>Loading facade status</source>
+        <target>Loading facade status</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/dashboard/dashboard.component.ts</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b7ca8d5b3f39fc7fe2bfd8a834802db5d4f07f0d" datatype="html">
+        <source>
+          <x id="START_ITALIC_TEXT" ctype="x-i"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i"/>
+          TURN ON
+        </source>
+        <target>
+          <x id="START_ITALIC_TEXT" ctype="x-i"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i"/>
+          TURN ON
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/dashboard/dashboard.component.ts</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3c79351030eb11bb295c38d381ae6acd1fed6c28" datatype="html">
+        <source>
+          <x id="START_ITALIC_TEXT" ctype="x-i"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i"/>
+          TURN OFF
+        </source>
+        <target>
+          <x id="START_ITALIC_TEXT" ctype="x-i"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i"/>
+          TURN OFF
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/dashboard/dashboard.component.ts</context>
+          <context context-type="linenumber">83</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c479f18eb42a3bc294be8e6abf27d63894e188c9" datatype="html">
+        <source>Until facade turns
+          <x id="START_TAG_SPAN" ctype="x-span"/>OFF<x id="CLOSE_TAG_SPAN" ctype="x-span"/>
+          <x id="START_TAG_SPAN_1" ctype="x-span"/>ON<x id="CLOSE_TAG_SPAN" ctype="x-span"/>
+        </source>
+        <target>Until facade turns
+          <x id="START_TAG_SPAN" ctype="x-span"/>OFF<x id="CLOSE_TAG_SPAN" ctype="x-span"/>
+          <x id="START_TAG_SPAN_1" ctype="x-span"/>ON<x id="CLOSE_TAG_SPAN" ctype="x-span"/>
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/dashboard/dashboard.component.ts</context>
+          <context context-type="linenumber">95</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="707ce2bc18969a2b81d03112128db589f172df51" datatype="html">
+        <source>Loading facade calendar</source>
+        <target>Loading facade calendar</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/dashboard/dashboard.component.ts</context>
+          <context context-type="linenumber">114</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bb7b373b05bb751dfc2085e039c53c4997a1e1f2" datatype="html">
+        <source>Today&apos;s facade time</source>
+        <target>Today&apos;s facade time</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/dashboard/dashboard.component.ts</context>
+          <context context-type="linenumber">121</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c1c802a9003d216d348dde0f02c49755d6f1ac67" datatype="html">
+        <source>Default app: <x id="INTERPOLATION"/></source>
+        <target>Default app: <x id="INTERPOLATION"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/dashboard/dashboard.component.ts</context>
+          <context context-type="linenumber">122</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="24b21983b544c6d911385f10ca10f6da7132a399" datatype="html">
+        <source>Loading facade app</source>
+        <target>Loading facade app</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/dashboard/dashboard.component.ts</context>
+          <context context-type="linenumber">131</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e053748b5e0d120bc0fb787f2438fa8ec2313c64" datatype="html">
+        <source>
+          <x id="START_ITALIC_TEXT" ctype="x-i"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i"/>
+          TERMINATE
+        </source>
+        <target>
+          <x id="START_ITALIC_TEXT" ctype="x-i"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i"/>
+          TERMINATE
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/dashboard/dashboard.component.ts</context>
+          <context context-type="linenumber">145</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="00569243be83222ba02b50ad83e72422380dfeec" datatype="html">
+        <source>Current app running until: COUNTDOWN</source>
+        <target>Current app running until: COUNTDOWN</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/dashboard/dashboard.component.ts</context>
+          <context context-type="linenumber">152</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="17831de464e581f1dc4c85dbec1b1979567feff2" datatype="html">
+        <source>Started by <x id="INTERPOLATION"/></source>
+        <target>Started by <x id="INTERPOLATION"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/dashboard/dashboard.component.ts</context>
+          <context context-type="linenumber">156</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1cd8a74917c18dacc3fc264f4df40956b85ffe49" datatype="html">
+        <source>No app running</source>
+        <target>No app running</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/dashboard/dashboard.component.ts</context>
+          <context context-type="linenumber">159</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="48845a18a0503785a5d30e66e282348d57409365" datatype="html">
+        <source>
+          <x id="START_ITALIC_TEXT" ctype="x-i"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i"/>
+          LAUNCH
+        </source>
+        <target>
+          <x id="START_ITALIC_TEXT" ctype="x-i"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i"/>
+          LAUNCH
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/dashboard/dashboard.component.ts</context>
+          <context context-type="linenumber">167</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ff9479bd832d5fceced59ab7a2dbceba9e751844" datatype="html">
+        <source>Either the facade is off, or you just terminated an app</source>
+        <target>Either the facade is off, or you just terminated an app</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/dashboard/dashboard.component.ts</context>
+          <context context-type="linenumber">174</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e7c288df4911d04ef08183851a12c96abd5850cf" datatype="html">
+        <source>Have a nice day :)</source>
+        <target>Have a nice day :)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/dashboard/dashboard.component.ts</context>
+          <context context-type="linenumber">181</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,7 +1,7 @@
 <div class="row" *ngIf="!backend.logged_in">
   <form>
     <div class="form-group">
-      <label for="username">username</label>
+      <label for="username" i18n>Username</label>
       <input
         type="text"
         class="form-control"
@@ -11,12 +11,12 @@
         [(ngModel)]="username"
         name="username"
       >
-      <small id="usernameHelp" class="form-text text-muted">
+      <small id="usernameHelp" class="form-text text-muted" i18n>
         This is a username that we assigned to you, not your email address.
       </small>
     </div>
     <div class="form-group">
-      <label for="password">Password</label>
+      <label for="password" i18n>Password</label>
       <input
         type="password"
         class="form-control"
@@ -32,17 +32,17 @@
         <!--Check me out-->
       <!--</label>-->
     <!--</div>-->
-    <div class="alert alert-danger" role="alert" *ngIf="backend.loginErr">
+    <div class="alert alert-danger" role="alert" *ngIf="backend.loginErr" i18n>
       Your login is invalid. Please try again.
     </div>
-    <button type="button" (click)="login()" class="btn btn-primary">LOGIN</button>
+    <button type="button" (click)="login()" class="btn btn-primary" i18n>LOGIN</button>
   </form>
 </div>
 
 <div class="row">
   <div class="col-sm-12">
     <div class="alert alert-danger" role="alert" *ngIf="backend.error">
-      <strong>Sorry there was an error with your request:</strong><br>
+      <strong i18n>Sorry there was an error with your request:</strong><br>
       {{backend.errorMsg}}
     </div>
   </div>
@@ -52,8 +52,8 @@
     <!--loading facade status-->
     <div class="card" *ngIf="!backend.status.know_on">
       <div class="card-block">
-        <div class="h4 m-0">Please stand by <i class="fa fa-spinner fa-pulse fa-fw"></i></div>
-        <small class="text-muted">Loading facade status</small>
+        <div class="h4 m-0" i18n>Please stand by <i class="fa fa-spinner fa-pulse fa-fw"></i></div>
+        <small class="text-muted" i18n>Loading facade status</small>
       </div>
     </div>
     <!--content-->
@@ -67,6 +67,7 @@
             *ngIf="!backend.facadeRunning"
             (click)="backend.switchFacade(true)"
             [disabled]="backend.status.changing"
+            i18n
           >
             <i class="fa fa-spinner fa-pulse fa-fw" *ngIf="backend.status.changing"></i>
             TURN ON
@@ -78,6 +79,7 @@
             *ngIf="backend.facadeRunning"
             (click)="backend.switchFacade(false)"
             [disabled]="backend.status.changing"
+            i18n
           >
             <i class="fa fa-spinner fa-pulse fa-fw" *ngIf="backend.status.changing"></i>
             TURN OFF
@@ -90,7 +92,7 @@
           <!--<span class="switch-handle"></span>-->
         <!--</label>-->
         <div class="clearfix"></div>
-        <div>Until facade turns
+        <div i18n>Until facade turns
           <span *ngIf="backend.facadeRunning">OFF</span>
           <span *ngIf="!backend.facadeRunning">ON</span>
         </div>
@@ -108,16 +110,16 @@
     <!--loading facade status-->
     <div class="card" *ngIf="!backend.status.know_cal">
       <div class="card-block">
-        <div class="h4 m-0">Please stand by <i class="fa fa-spinner fa-pulse fa-fw"></i></div>
-        <small class="text-muted">Loading facade calendar</small>
+        <div class="h4 m-0" i18n>Please stand by <i class="fa fa-spinner fa-pulse fa-fw"></i></div>
+        <small class="text-muted" i18n>Loading facade calendar</small>
       </div>
     </div>
     <!--content-->
     <div class="card" *ngIf="backend.status.know_cal">
       <div class="card-block">
         <div class="h4 m-0">{{backend.cal.on}}-{{backend.cal.off}}</div>
-        <div>Today's facade time</div>
-        <small class="text-muted">Default app: {{backend.cal.default}}</small>
+        <div i18n>Today's facade time</div>
+        <small class="text-muted" i18n>Default app: {{backend.cal.default}}</small>
       </div>
     </div>
   </div><!--/.col-->
@@ -125,8 +127,8 @@
     <!--loading facade status-->
     <div class="card" *ngIf="!backend.status.know_app">
       <div class="card-block">
-        <div class="h4 m-0">Please stand by <i class="fa fa-spinner fa-pulse fa-fw"></i></div>
-        <small class="text-muted">Loading facade app</small>
+        <div class="h4 m-0" i18n>Please stand by <i class="fa fa-spinner fa-pulse fa-fw"></i></div>
+        <small class="text-muted" i18n>Loading facade app</small>
       </div>
     </div>
     <!--content-->
@@ -139,6 +141,7 @@
             class="btn btn-danger"
             (click)="backend.killApp()"
             [disabled]="backend.status.changing"
+            i18n
           >
             <i class="fa fa-spinner fa-pulse fa-fw" *ngIf="backend.status.changing"></i>
             TERMINATE
@@ -146,20 +149,21 @@
         </div>
 
         <div class="clearfix"></div>
-        <div>Current app running until: COUNTDOWN</div>
+        <div i18n>Current app running until: COUNTDOWN</div>
         <div class="progress progress-xs my-1">
           <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
-        <small class="text-muted">Started by {{backend.app.user}}</small>
+        <small class="text-muted" i18n>Started by {{backend.app.user}}</small>
       </div>
       <div class="card-block" *ngIf="backend.app.name === ''">
-        <div class="h4 m-0 pull-left">No app running</div>
+        <div class="h4 m-0 pull-left" i18n>No app running</div>
         <div class="pull-right">
           <button
             type="button"
             class="btn btn-success"
             (click)="launchApp()"
             [disabled]="backend.status.changing"
+            i18n
           >
             <i class="fa fa-spinner fa-pulse fa-fw" *ngIf="backend.status.changing"></i>
             LAUNCH
@@ -167,14 +171,14 @@
         </div>
 
         <div class="clearfix"></div>
-        <div>Either the facade is off, or you just terminated an app</div>
+        <div i18n>Either the facade is off, or you just terminated an app</div>
       </div>
     </div>
   </div><!--/.col-->
   <div class="col-sm-6 col-lg-3">
     <div class="card">
       <div class="card-block">
-        <div class="h4 m-0">Have a nice day :)</div>
+        <div class="h4 m-0" i18n>Have a nice day :)</div>
         <!--<div>Lorem ipsum...</div>-->
         <!--<div class="progress progress-xs my-1">-->
           <!--<div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>-->
