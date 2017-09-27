@@ -209,19 +209,14 @@
         <div class="form-group row">
           <label class="col-md-3 form-control-label">Apps</label>
           <div class="col-md-9">
-            <div class="radio">
-              <label for="radio-abc">
-                <input type="radio" id="radio-abc" [(ngModel)]="apppicker" name="apppicker" value="abc"> ABC
-              </label>
-            </div>
-            <div class="radio">
-              <label for="radio-def">
-                <input type="radio" id="radio-def" [(ngModel)]="apppicker" name="apppicker" value="def"> DEF
-              </label>
-            </div>
-            <div class="radio">
-              <label for="radio-ghi">
-                <input type="radio" id="radio-ghi" [(ngModel)]="apppicker" name="apppicker" value="ghi"> GHI
+            <div class="radio" *ngFor="let app of backend.applist">
+              <label for="radio-{{app.name}}">
+                <input
+                  type="radio"
+                  id="radio-{{app.name}}"
+                  [(ngModel)]="apppicker"
+                  name="apppicker"
+                  value="{{app.name}}"> {{app.name|capitalize}}
               </label>
             </div>
           </div>

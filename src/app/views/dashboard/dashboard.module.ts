@@ -6,6 +6,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {BsDropdownModule, ModalModule} from 'ngx-bootstrap';
+import {CapitalizePipe} from '../../pipes/capitalize.pipe';
 
 @NgModule({
   imports: [
@@ -16,6 +17,6 @@ import {BsDropdownModule, ModalModule} from 'ngx-bootstrap';
     DashboardRoutingModule,
     ChartsModule
   ],
-  declarations: [ DashboardComponent ]
+  declarations: [ DashboardComponent, CapitalizePipe ]
 })
 export class DashboardModule { }

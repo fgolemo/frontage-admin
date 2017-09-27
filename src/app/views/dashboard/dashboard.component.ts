@@ -2,10 +2,11 @@ import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {BackendService} from '../../services/backend.service';
 import { ModalDirective } from 'ngx-bootstrap/modal/modal.component';
+import {CapitalizePipe} from '../../pipes/capitalize.pipe';
 
 
 @Component({
-  templateUrl: 'dashboard.component.html'
+  templateUrl: 'dashboard.component.html',
 })
 export class DashboardComponent {
   username = '';

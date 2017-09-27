@@ -49,7 +49,11 @@ const APP_DIRECTIVES = [
   AsideToggleDirective,
   NAV_DROPDOWN_DIRECTIVES,
   SIDEBAR_TOGGLE_DIRECTIVES
-]
+];
+
+const APP_PIPES = [
+  CapitalizePipe
+];
 
 // Import routing module
 import { AppRoutingModule } from './app.routing';
@@ -60,6 +64,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import {BackendService} from './services/backend.service';
 import {HttpModule} from '@angular/http';
+import {CapitalizePipe} from "./pipes/capitalize.pipe";
 
 @NgModule({
   imports: [
@@ -74,6 +79,7 @@ import {HttpModule} from '@angular/http';
     AppComponent,
     ...APP_CONTAINERS,
     ...APP_COMPONENTS,
+    // ...APP_PIPES,
     ...APP_DIRECTIVES
   ],
   providers: [{
