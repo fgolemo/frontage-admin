@@ -45,11 +45,11 @@ export class BackendService {
   private getOnOff(): Promise<any> {
     const query = this.addTokenGet(environment.backend + 'admin/is_on');
     const statusOp = this.http.get(query).toPromise();
-    return statusOp.then(data => this.getOnOffResponse(data), err => this.handleError(err));
+    return statusOp.then(data => this.getOnOffResponse(data), err => BackendService.handleError(err));
   }
 
   private getOnOffResponse(res: Response): Promise<any> {
-    const data = this.extractData(res);
+    const data = BackendService.extractData(res);
     if (!this.hasError(data)) {
       this.status.know_on = true;
       this.facadeRunning = data.on;
@@ -61,11 +61,11 @@ export class BackendService {
   private getCal(): Promise<any> {
     const query = this.addTokenGet(environment.backend + 'admin/cal');
     const statusOp = this.http.get(query).toPromise();
-    return statusOp.then(data => this.getCalResponse(data), err => this.handleError(err));
+    return statusOp.then(data => this.getCalResponse(data), err => BackendService.handleError(err));
   }
 
   private getCalResponse(res: Response): Promise<any> {
-    const data = this.extractData(res);
+    const data = BackendService.extractData(res);
     if (!this.hasError(data)) {
       this.status.know_cal = true;
       this.cal.on = data.on;
@@ -80,11 +80,11 @@ export class BackendService {
   private getApp(): Promise<any> {
     const query = this.addTokenGet(environment.backend + 'admin/apps/running');
     const statusOp = this.http.get(query).toPromise();
-    return statusOp.then(data => this.getAppRespone(data), err => this.handleError(err));
+    return statusOp.then(data => this.getAppRespone(data), err => BackendService.handleError(err));
   }
 
   private getAppRespone(res: Response): Promise<any> {
-    const data = this.extractData(res);
+    const data = BackendService.extractData(res);
     if (!this.hasError(data)) {
       this.status.know_app = true;
       this.app.name = data.data.name;
@@ -99,11 +99,11 @@ export class BackendService {
   private getAppList(): Promise<any> {
     const query = this.addTokenGet(environment.backend + 'admin/apps');
     const statusOp = this.http.get(query).toPromise();
-    return statusOp.then(data => this.getAppListRespone(data), err => this.handleError(err));
+    return statusOp.then(data => this.getAppListRespone(data), err => BackendService.handleError(err));
   }
 
   private getAppListRespone(res: Response): Promise<any> {
-    const data = this.extractData(res);
+    const data = BackendService.extractData(res);
     if (!this.hasError(data)) {
       this.status.know_applist = true;
       this.applist = data.data;
@@ -121,7 +121,7 @@ export class BackendService {
 
     const query = this.addTokenGet(environment.backend + 'admin/apps/running');
     const killOp = this.http.delete(query).toPromise();
-    return killOp.then(data => this.getAppRespone(data), err => this.handleError(err));
+    return killOp.then(data => this.getAppRespone(data), err => BackendService.handleError(err));
   }
 
   public login(user: string, pass: string): Promise<any> {
@@ -131,11 +131,11 @@ export class BackendService {
       password: pass
     };
     const loginOp = this.http.post(environment.backend + 'login', payload).toPromise();
-    return loginOp.then(data => this.loginResponse(data), err => this.handleError(err));
+    return loginOp.then(data => this.loginResponse(data), err => BackendService.handleError(err));
   }
 
   private loginResponse(res: Response): Promise<any> {
-    const data = this.extractData(res);
+    const data = BackendService.extractData(res);
     if (data.error === 0 && data.token) {
       this.logged_in = true;
       this.loginErr = false;
@@ -190,17 +190,16 @@ export class BackendService {
     };
 
     const switchOp = this.http.post(environment.backend + 'admin/is_on', this.addTokenPost(payload)).toPromise();
-    return switchOp.then(data => this.switchFacadeResponse(data), err => this.handleError(err));
+    return switchOp.then(data => this.switchFacadeResponse(data), err => BackendService.handleError(err));
   }
 
-  private extractData(res: Response) {
+  private static extractData(res: Response) {
     const body = res['_body'] || '';
-    const data = JSON.parse(body);
-    return data;
+    return JSON.parse(body);
   }
 
   public switchFacadeResponse(res: Response): Promise<any> {
-    const data = this.extractData(res);
+    const data = BackendService.extractData(res);
     if (!this.hasError(data)) {
       this.facadeRunning = data.on;
       this.getApp();
@@ -209,7 +208,7 @@ export class BackendService {
     return Promise.resolve({});
   }
 
-  private handleError(error: Response | any) {
+  private static handleError(error: Response | any) {
     let errMsg: string;
     if (error instanceof Response) {
       const body = error.json() || '';
