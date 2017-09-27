@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {BackendService} from '../../services/backend.service';
+import { ModalDirective } from 'ngx-bootstrap/modal/modal.component';
+
 
 @Component({
   templateUrl: 'dashboard.component.html'
@@ -8,6 +10,7 @@ import {BackendService} from '../../services/backend.service';
 export class DashboardComponent {
   username = '';
   password = '';
+  public appPickerModal;
 
   constructor(public backend: BackendService) {
   }

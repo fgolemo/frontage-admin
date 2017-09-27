@@ -27,10 +27,10 @@
       >
     </div>
     <!--<div class="form-check">-->
-      <!--<label class="form-check-label">-->
-        <!--<input type="checkbox" class="form-check-input">-->
-        <!--Check me out-->
-      <!--</label>-->
+    <!--<label class="form-check-label">-->
+    <!--<input type="checkbox" class="form-check-input">-->
+    <!--Check me out-->
+    <!--</label>-->
     <!--</div>-->
     <div class="alert alert-danger" role="alert" *ngIf="backend.loginErr" i18n>
       Your login is invalid. Please try again.
@@ -87,9 +87,9 @@
         </div>
 
         <!--<label class="switch switch-lg switch-text switch-primary pull-right">-->
-          <!--<input type="checkbox" class="switch-input" [(ngModel)]="backend.facadeRunning" >-->
-          <!--<span class="switch-label" data-on="On" data-off="Off"></span>-->
-          <!--<span class="switch-handle"></span>-->
+        <!--<input type="checkbox" class="switch-input" [(ngModel)]="backend.facadeRunning" >-->
+        <!--<span class="switch-label" data-on="On" data-off="Off"></span>-->
+        <!--<span class="switch-handle"></span>-->
         <!--</label>-->
         <div class="clearfix"></div>
         <div i18n>Until facade turns
@@ -97,10 +97,12 @@
           <span *ngIf="!backend.facadeRunning">ON</span>
         </div>
         <div class="progress progress-xs my-1" *ngIf="backend.facadeRunning">
-          <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25"
+               aria-valuemin="0" aria-valuemax="100"></div>
         </div>
         <div class="progress progress-xs my-1" *ngIf="!backend.facadeRunning">
-          <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
+               aria-valuemax="100"></div>
         </div>
         <!--<small class="text-muted">Lorem ipsum dolor sit amet enim.</small>-->
       </div>
@@ -151,19 +153,22 @@
         <div class="clearfix"></div>
         <div i18n>Current app running until: COUNTDOWN</div>
         <div class="progress progress-xs my-1">
-          <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25"
+               aria-valuemin="0" aria-valuemax="100"></div>
         </div>
         <small class="text-muted" i18n>Started by {{backend.app.user}}</small>
       </div>
       <div class="card-block" *ngIf="backend.app.name === ''">
         <div class="h4 m-0 pull-left" i18n>No app running</div>
         <div class="pull-right">
+          <!--(click)="launchApp()"-->
           <button
             type="button"
             class="btn btn-success"
-            (click)="launchApp()"
             [disabled]="backend.status.changing"
             i18n
+            data-toggle="modal"
+            (click)="appPickerModal.show()"
           >
             <i class="fa fa-spinner fa-pulse fa-fw" *ngIf="backend.status.changing"></i>
             LAUNCH
@@ -181,10 +186,31 @@
         <div class="h4 m-0" i18n>Have a nice day :)</div>
         <!--<div>Lorem ipsum...</div>-->
         <!--<div class="progress progress-xs my-1">-->
-          <!--<div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>-->
+        <!--<div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>-->
         <!--</div>-->
         <!--<small class="text-muted">Lorem ipsum dolor sit amet enim.</small>-->
       </div>
     </div>
   </div><!--/.col-->
 </div><!--/.row-->
+
+<div bsModal #appPickerModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="appPickerModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Pick an app to start</h4>
+        <button type="button" class="close" (click)="appPickerModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>One fine body&hellip;</p>
+        <p>TODO: add app list here</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="appPickerModal.hide()">Cancel</button>
+        <button type="button" class="btn btn-primary">Launch</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
