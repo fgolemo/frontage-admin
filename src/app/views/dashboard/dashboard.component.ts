@@ -11,6 +11,7 @@ export class DashboardComponent {
   username = '';
   password = '';
   public appPickerModal;
+  apppicker = '';
 
   constructor(public backend: BackendService) {
   }
