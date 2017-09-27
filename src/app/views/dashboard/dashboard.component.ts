@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
-import {BackendService} from '../../services/backend.service';
-import { ModalDirective } from 'ngx-bootstrap/modal/modal.component';
+import {App, BackendService} from '../../services/backend.service';
+import {ModalDirective} from 'ngx-bootstrap/modal/modal.component';
 import {CapitalizePipe} from '../../pipes/capitalize.pipe';
 
 @Component({
@@ -27,7 +27,11 @@ export class DashboardComponent {
   }
 
   launchApp(): void {
-    // TODO: show modal and ask which app
-    console.log('TODO: ask which app to launch');
+    const app = new App();
+    app.name = this.apppicker.name;
+    app.params = this.apppicker.params;
+
+    this.backend.launchApp(app);
+    // this.appPickerModal.hide();
   }
 }

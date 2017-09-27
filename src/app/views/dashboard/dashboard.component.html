@@ -238,12 +238,12 @@
               <span class="help-block">{{param.desc}}</span>
             </div>
           </div>
-          <div>{{apppicker.params|json}}</div>
+          <!--<div>{{apppicker.params|json}}</div>-->
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" (click)="appPickerModal.hide()">Cancel</button>
-        <button type="button" class="btn btn-primary">Launch</button>
+        <button type="button" class="btn btn-primary" (click)="launchApp();appPickerModal.hide()">Launch</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

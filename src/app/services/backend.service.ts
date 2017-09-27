@@ -10,6 +10,14 @@ import {environment} from '../../environments/environment';
 //   data: object;
 // }
 
+// TODO: make external class, and use internally properly
+export class App {
+  name: string;
+  params: object;
+  start: string;
+  user: string;
+}
+
 @Injectable()
 export class BackendService {
   logged_in = false;
@@ -122,6 +130,15 @@ export class BackendService {
     const query = this.addTokenGet(environment.backend + 'admin/apps/running');
     const killOp = this.http.delete(query).toPromise();
     return killOp.then(data => this.getAppRespone(data), err => BackendService.handleError(err));
+  }
+
+  public launchApp(app: App): Promise<any> {
+
+    // this should have worked, but on my mock server it isn't
+    const payload = this.addTokenPost(app);
+    const launchOp = this.http.put(environment.backend + 'admin/apps/running', payload).toPromise();
+
+    return launchOp.then(data => this.getAppRespone(data), err => BackendService.handleError(err));
   }
 
   public login(user: string, pass: string): Promise<any> {
