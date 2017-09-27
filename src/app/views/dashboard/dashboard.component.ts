@@ -4,7 +4,6 @@ import {BackendService} from '../../services/backend.service';
 import { ModalDirective } from 'ngx-bootstrap/modal/modal.component';
 import {CapitalizePipe} from '../../pipes/capitalize.pipe';
 
-
 @Component({
   templateUrl: 'dashboard.component.html',
 })
@@ -12,7 +11,13 @@ export class DashboardComponent {
   username = '';
   password = '';
   public appPickerModal;
-  apppicker = '';
+  apppicker = {
+    name: '',
+    params: {}
+  };
+
+  // TODO outsource
+  // qtd: any[] = {};
 
   constructor(public backend: BackendService) {
   }

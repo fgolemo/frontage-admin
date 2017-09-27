@@ -7,6 +7,8 @@ import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {BsDropdownModule, ModalModule} from 'ngx-bootstrap';
 import {CapitalizePipe} from '../../pipes/capitalize.pipe';
+import {FilterbynamePipe} from '../../pipes/filterbyname.pipe';
+import {GetparamsPipe} from '../../pipes/getparams.pipe';
 
 @NgModule({
   imports: [
@@ -17,6 +19,11 @@ import {CapitalizePipe} from '../../pipes/capitalize.pipe';
     DashboardRoutingModule,
     ChartsModule
   ],
-  declarations: [ DashboardComponent, CapitalizePipe ]
+  declarations: [
+    DashboardComponent,
+    CapitalizePipe,
+    FilterbynamePipe,
+    GetparamsPipe
+  ]
 })
 export class DashboardModule { }

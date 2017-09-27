@@ -195,7 +195,8 @@
 </div><!--/.row-->
 
 <!--TODO this should be made into a separate component-->
-<div bsModal #appPickerModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="appPickerModalLabel" aria-hidden="true">
+<div bsModal #appPickerModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+     aria-labelledby="appPickerModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -214,14 +215,31 @@
                 <input
                   type="radio"
                   id="radio-{{app.name}}"
-                  [(ngModel)]="apppicker"
+                  [(ngModel)]="apppicker.name"
                   name="apppicker"
                   value="{{app.name}}"> {{app.name|capitalize}}
               </label>
             </div>
           </div>
         </div>
-        <p>Selected: {{apppicker|json}}</p>
+        <!--<p>Selected: {{apppicker|json}}</p>-->
+        <div *ngIf="apppicker.name!=''">
+          <div class="form-group row" *ngFor="let param of backend.applist | filterbyname:apppicker.name | getparams">
+            <label class="col-md-3 form-control-label" for="param-{{param.name}}">{{param.name | capitalize}}:</label>
+            <div class="col-md-9">
+              <input
+                type="text"
+                id="param-{{param.name}}"
+                name="param-{{param.name}}"
+                class="form-control"
+                placeholder="{{param.name}}"
+                [(ngModel)]="apppicker.params[param.name]"
+              >
+              <span class="help-block">{{param.desc}}</span>
+            </div>
+          </div>
+          <div>{{apppicker.params|json}}</div>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" (click)="appPickerModal.hide()">Cancel</button>
