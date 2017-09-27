@@ -88,8 +88,6 @@ export class BackendService {
     if (!this.hasError(data)) {
       this.status.know_app = true;
       this.app.name = data.data.name;
-      console.log(this.app.name !== '');
-      console.log(this.app.name);
       this.app.start = data.data.start;
       this.app.user = data.data.user;
       this.app.params = data.data.params;
