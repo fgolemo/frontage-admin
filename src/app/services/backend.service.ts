@@ -22,6 +22,7 @@ export class BackendService {
     changing: false,
     know_on: false,
     know_app: false,
+    know_applist: false,
     know_cal: false
   };
   cal = { // TODO: make external class
@@ -36,6 +37,7 @@ export class BackendService {
     start: '',
     user: ''
   };
+  applist = [];
 
   constructor(private http: Http) {
   };
@@ -96,6 +98,23 @@ export class BackendService {
     return Promise.resolve({});
   }
 
+  private getAppList(): Promise<any> {
+    const query = this.addTokenGet(environment.backend + 'admin/apps');
+    const statusOp = this.http.get(query).toPromise();
+    return statusOp.then(data => this.getAppListRespone(data), err => this.handleError(err));
+  }
+
+  private getAppListRespone(res: Response): Promise<any> {
+    const data = this.extractData(res);
+    if (!this.hasError(data)) {
+      this.status.know_applist = true;
+      this.applist = data.data;
+      console.log('received app list');
+      console.log('got ' + this.applist.length + ' apps');
+    }
+    return Promise.resolve({});
+  }
+
   public killApp(): Promise<any> {
 
     // // this should have worked, but on my mock server it isn't
@@ -129,6 +148,7 @@ export class BackendService {
       this.getOnOff();
       this.getCal();
       this.getApp();
+      this.getAppList();
     } else {
       // TODO: write service that looks up error codes and echoes the right error message
       this.loginErr = true;
